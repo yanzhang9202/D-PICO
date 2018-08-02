@@ -1,7 +1,7 @@
 %% Consensus dual decomposition method
 % algorithm parameter setting
 iter_max = 1e3;     % number of max. iter.
-phi = 1;    % number of consensus rounds at each iter.
+phi = 10;    % number of consensus rounds at each iter.
 alpha = 1e-2*N;   % step size for the gradient update
 wgt = gph.wgt^phi;
 eps_cdd = 1e-2;
@@ -38,11 +38,21 @@ for ii = 1 : iter_max
 end
 
 if ii < iter_max
-    fprintf(['C-DD solver succeeds with accuracy ', num2str(rsd), ...
+    fprintf(['C-DD solver succeeds with accuracy ', num2str(norm(rsd)), ...
         ' and exits.\n\n'])
 else
-    fprintf(['C-DD solver fails with accuracy ', num2str(rsd), ...
+    fprintf(['C-DD solver fails with accuracy ', num2str(norm(rsd)), ...
         ' and exits.\n\n'])
 end
 
-clear iter_max wgt eps_cdd Acdd
+%%
+sol{ind_alg}.x = reshape(x_itr(:,ii,:),[],1);
+sol{ind_alg}.x_itr = x_itr;
+sol{ind_alg}.lambda = lambda;
+sol{ind_alg}.lambda_itr = lambda_itr;
+sol{ind_alg}.alpha = alpha;
+sol{ind_alg}.eps = eps_cdd;
+sol{ind_alg}.phi = phi;
+sol{ind_alg}.num_itr = ii;
+
+clear iter_max wgt eps_cdd Acdd phi x x_itr lambda lambda_itr
