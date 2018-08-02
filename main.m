@@ -4,6 +4,8 @@ clear;
 close all;
 clc;
 
+PICO_start;
+
 % Generate problem data
 rnd_seed = 2;
 rng(rnd_seed);
@@ -29,3 +31,5 @@ switch ind_alg
     otherwise
         error('Undefined algorithm!')
 end
+
+PICO_end;
