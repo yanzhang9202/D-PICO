@@ -42,4 +42,12 @@ soldd.step = step;
 soldd.eps = eps_dd;
 sol{ind_alg} = soldd;
 
+if ii < iter_max
+    fprintf(['DD solver succeeds with accuracy,', num2str(eps_dd), ...
+        ' and exits.\n\n'])
+else
+    fprintf(['DD solver fails with accuracy,', num2str(eps_dd), ...
+        ' and exits.\n\n'])
+end
+
 clear lambda lambda_itr x_itr Add iter_max step eps_dd soldd
