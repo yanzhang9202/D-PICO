@@ -16,7 +16,7 @@ for ii = 1 : iter_max
     lambda_itr(:,ii) = lambda;
     % Solve local problems
     for jj = 1 : N
-        x_itr(:,ii,jj) = locfun_dd(Q(:,:,jj),q(:,jj),A(:,:,jj),...
+        x_itr(:,ii,jj) = locfun_randQP(Q(:,:,jj),q(:,jj),A(:,:,jj),...
             l(:,jj),u(:,jj),lambda);
     end
     % Update the multiplier
@@ -43,10 +43,10 @@ soldd.eps = eps_dd;
 sol{ind_alg} = soldd;
 
 if ii < iter_max
-    fprintf(['DD solver succeeds with accuracy,', num2str(eps_dd), ...
+    fprintf(['DD solver succeeds with accuracy ', num2str(rsd), ...
         ' and exits.\n\n'])
 else
-    fprintf(['DD solver fails with accuracy,', num2str(eps_dd), ...
+    fprintf(['DD solver fails with accuracy ', num2str(rsd), ...
         ' and exits.\n\n'])
 end
 

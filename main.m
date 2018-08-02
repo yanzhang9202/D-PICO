@@ -7,7 +7,7 @@ clc;
 PICO_start;
 
 % Generate problem data
-rnd_seed = 2;
+rnd_seed = 1;
 rng(rnd_seed);
 
 pb_type = 'randQP';
@@ -33,6 +33,6 @@ for ind_alg = ind
     end
 end
 
-makeplot;
+% makeplot;
 
 % PICO_end;

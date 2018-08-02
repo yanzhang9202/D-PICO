@@ -1,4 +1,4 @@
-function [ x ] = locfun_dd(H, q, A, l, u, lambda)
+function [ x ] = locfun_randQP(H, q, A, l, u, lambda)
     f = q + A'*lambda;
     options = optimoptions('quadprog',...
         'Algorithm','interior-point-convex','Display','off');        
