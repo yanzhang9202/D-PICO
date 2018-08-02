@@ -20,7 +20,8 @@ switch pb_type
         
         datam.H = Hm;   datam.f = fm;   datam.A = Am;   datam.b = bm;
         datam.l = lm;   datam.u = um;
-        clear Qc Hm Ac Am fm bm lm um
+        sol{ind_alg} = solm;
+        clear Qc Hm Ac Am fm bm lm um solm;
     otherwise
         error('Undefined Matlab solution!')
 end
