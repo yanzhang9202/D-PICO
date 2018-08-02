@@ -12,14 +12,14 @@ switch pb_type
         bm = zeros(size(Am,1),1);
         um = u(:);  lm = l(:);
     
-        [msol.x, msol.fval, msol.flagexit, msol.output, msol.lambda] = quadprog(...
+        [solm.x, solm.fval, solm.flagexit, solm.output, solm.lambda] = quadprog(...
             Hm, fm, [], [], Am, bm, lm, um, [], options);
-        if msol.flagexit ~= 1
+        if solm.flagexit ~= 1
             error('Formulated problem cannot be exactly solved by Matlab!\n')
         end
         
-        mdata.H = Hm;   mdata.f = fm;   mdata.A = Am;   mdata.b = bm;
-        mdata.l = lm;   mdata.u = um;
+        datam.H = Hm;   datam.f = fm;   datam.A = Am;   datam.b = bm;
+        datam.l = lm;   datam.u = um;
         clear Qc Hm Ac Am fm bm lm um
     otherwise
         error('Undefined Matlab solution!')
