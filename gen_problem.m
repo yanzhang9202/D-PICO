@@ -8,4 +8,4 @@ switch pb_type
 end
 
 %% Create graph
-
+gen_graph;

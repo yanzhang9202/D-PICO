@@ -4,6 +4,6 @@ n = 2;
 m = 1;
 
 % Generate data
-Q = zeros(n,n,N);
-q = zeros(n,N);
-A = zeros(m,n,N);
+Q = rand(n,n,N);
+q = rand(n,N);
+A = rand(m,n,N);

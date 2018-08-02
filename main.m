@@ -8,6 +8,7 @@ clc;
 rnd_seed = 2;
 rng(rnd_seed);
 
+pb_type = 'randQP';
 gen_problem;
 
 % Algorithms
