@@ -10,6 +10,7 @@ x_itr = zeros(n, iter_max, N);
 Add = datam.A;
 
 % Run
+fprintf('DD solver starts... \n')
 for ii = 1 : iter_max
     % Solve local problems
     for jj = 1 : N
@@ -33,4 +34,9 @@ soldd.x = x_itr(:, ii, :);
 soldd.x = soldd.x(:);
 soldd.x_itr = x_itr;
 soldd.lambda = lambda_itr;
+soldd.num_itr = ii;
+soldd.step = step;
+soldd.eps = eps_dd;
+
+clear lambda_itr x_itr Add iter_max step eps_dd
 
