@@ -1,8 +1,8 @@
 %% PI Consensus Optimization in the dual domain
 % algorithm parameter setting
-iter_max = 1e4;     % number of max. iter.
-alpha = 1e-4*N;   % step size for the gradient update
-beta = 1e-4*N;
+iter_max = 2e3;     % number of max. iter.
+alpha = 1e-3*N;   % step size for the gradient update
+beta = 1e-3*1;
 wgt = gph.wgt;
 eps_pic = 1e-2;
 
