@@ -2,7 +2,7 @@
 % algorithm parameter setting
 iter_max = 1e3;     % number of max. iter.
 phi = 1;    % number of consensus rounds at each iter.
-alpha = 1e-2*N;   % step size for the gradient update
+alpha = 1e-4*N;   % step size for the gradient update
 wgt = gph.wgt^phi;
 eps_cdd = 1e-2;
 

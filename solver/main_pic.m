@@ -1,11 +1,16 @@
 %% PI Consensus Optimization in the dual domain
 % algorithm parameter setting
-iter_max = 2e3;     % number of max. iter.
-phi = 1;    % number of consensus rounds at each iter.
-alpha = 1e-2*N;   % step size for the gradient update
-beta = 1e-3*N;
-wgt = gph.wgt^phi;
+iter_max = 1e4;     % number of max. iter.
+alpha = 1e-4*N;   % step size for the gradient update
+beta = 1e-4*N;
+wgt = gph.wgt;
 eps_pic = 1e-2;
+
+% weight for beta
+wgt_beta = wgt;
+for ii = 1 : N
+    wgt_beta(ii,ii) = -(1 - wgt(ii,ii));
+end
 
 % variable initialized
 x = zeros(n, N);
@@ -29,10 +34,10 @@ for ii = 1 : iter_max
         else
             mu(:,jj) = temp * wgt(jj,:)' - temp(:,jj) + mu(:,jj);
         end
-        lambda(:,jj) = lambda(:,jj) + alpha*A(:,:,jj)*x_itr(:,ii,jj) + ...
-            beta*mu(:,jj);
+        lambda(:,jj) = lambda(:,jj) + alpha*A(:,:,jj)*x_itr(:,ii,jj);
     end
     % Consensus step
+    lambda = lambda - beta*mu * wgt_beta';
     lambda = lambda * wgt';
     
     % Check the stopping condition (the rsd is not locally available)
@@ -62,7 +67,6 @@ sol{ind_alg}.lambda_itr = lambda_itr;
 sol{ind_alg}.alpha = alpha;
 sol{ind_alg}.beta = beta;
 sol{ind_alg}.eps = eps_pic;
-sol{ind_alg}.phi = phi;
 sol{ind_alg}.num_itr = ii;
 sol{ind_alg}.mu = mu;
 sol{ind_alg}.rsd = rsd;

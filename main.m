@@ -14,7 +14,7 @@ pb_type = 'randQP';
 gen_problem;
 
 % Algorithms
-ind = [1,2,4];    % 1 - matlab;   2 - DD;     3 - C-DD
+ind = [1,2,3,4];    % 1 - matlab;   2 - DD;     3 - C-DD
                 % 4 - PIC-DD;   5 - EC-DD;
 for ind_alg = ind                
     switch ind_alg
@@ -34,5 +34,8 @@ for ind_alg = ind
 end
 
 % makeplot;
+
+%% Save results
+save('results/080318_001');
 
 % PICO_end;
