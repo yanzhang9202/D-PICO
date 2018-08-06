@@ -14,7 +14,7 @@ pb_type = 'randQP';
 gen_problem;
 
 % Algorithms
-ind = [1,2,4];    % 1 - matlab;   2 - DD;     3 - C-DD
+ind = [1,2,5];    % 1 - matlab;   2 - DD;     3 - C-DD
                 % 4 - PIC-DD;   5 - EC-DD;
 for ind_alg = ind                
     switch ind_alg
@@ -27,7 +27,7 @@ for ind_alg = ind
         case 4
             main_pic;
         case 5
-            main_ecdd;
+            main_excdd;
         otherwise
             error('Undefined algorithm!')
     end
