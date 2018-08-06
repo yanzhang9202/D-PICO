@@ -1,6 +1,6 @@
 %% PI Consensus Optimization in the dual domain
 % algorithm parameter setting
-iter_max = 2e3;     % number of max. iter.
+iter_max = 1e3;     % number of max. iter.
 alpha = 1e-3*N;   % step size for the gradient update
 beta = 1e-3*1;
 wgt = gph.wgt;
@@ -37,7 +37,7 @@ for ii = 1 : iter_max
         lambda(:,jj) = lambda(:,jj) + alpha*A(:,:,jj)*x_itr(:,ii,jj);
     end
     % Consensus step
-    lambda = lambda - beta*mu * wgt_beta';
+    lambda = lambda + beta * mu * wgt_beta';
     lambda = lambda * wgt';
     
     % Check the stopping condition (the rsd is not locally available)
