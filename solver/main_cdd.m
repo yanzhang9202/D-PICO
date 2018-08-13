@@ -1,8 +1,8 @@
 %% Consensus dual decomposition method
 % algorithm parameter setting
 iter_max = 1e3;     % number of max. iter.
-phi = 10;    % number of consensus rounds at each iter.
-alpha = 1e-2*N;   % step size for the gradient update
+phi = 1;    % number of consensus rounds at each iter.
+alpha = 1e-3*N;   % step size for the gradient update
 wgt = gph.wgt^phi;
 eps_cdd = 1e-2;
 
@@ -27,22 +27,22 @@ for ii = 1 : iter_max
     lambda = lambda * wgt';
     
     % Check the stopping condition (the rsd is not locally available)
-    rsd = Acdd*reshape(x_itr(:,ii,:),[],1);
-    if norm(rsd) < eps_cdd
+    rsd = norm(Acdd*reshape(x_itr(:,ii,:),[],1));
+    if rsd < eps_cdd
         break;
     end
     if mod(ii, 100) == 1
         fprintf(['The ', num2str(ii), ' th iter. done. The rsd is ', ...
-            num2str(norm(rsd)), '!\n'])
+            num2str(rsd), '!\n'])
     end
 end
 
 if ii < iter_max
     fprintf(['C-DD solver succeeds with accuracy ', num2str(norm(rsd)), ...
-        ' and exits.\n\n'])
+        ' at iter. ', num2str(ii), '.\n\n'])
 else
     fprintf(['C-DD solver fails with accuracy ', num2str(norm(rsd)), ...
-        ' and exits.\n\n'])
+        ' at iter. ', num2str(ii), '.\n\n'])
 end
 
 %%

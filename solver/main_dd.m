@@ -20,14 +20,14 @@ for ii = 1 : iter_max
             l(:,jj),u(:,jj),lambda);
     end
     % Update the multiplier
-    rsd = Add*reshape(x_itr(:,ii,:),[],1);
-    if norm(rsd) < eps_dd
+    rsd = norm(Add*reshape(x_itr(:,ii,:),[],1));
+    if rsd < eps_dd
         break;
     end
-    lambda = lambda + step*rsd;
+    lambda = lambda + step*Add*reshape(x_itr(:,ii,:),[],1);
     if mod(ii, 100) == 1
         fprintf(['The ', num2str(ii), ' th iter. done. The rsd is ', ...
-            num2str(norm(rsd)), '!\n'])
+            num2str(rsd), '!\n'])
     end
 end
 
@@ -43,11 +43,11 @@ soldd.eps = eps_dd;
 sol{ind_alg} = soldd;
 
 if ii < iter_max
-    fprintf(['DD solver succeeds with accuracy ', num2str(norm(rsd)), ...
-        ' and exits.\n\n'])
+    fprintf(['DD solver succeeds with accuracy ', num2str(rsd), ...
+        ' at iter. ', num2str(ii), '.\n\n'])
 else
-    fprintf(['DD solver fails with accuracy ', num2str(norm(rsd)), ...
-        ' and exits.\n\n'])
+    fprintf(['DD solver fails with accuracy ', num2str(rsd), ...
+        ' at iter. ', num2str(ii), '.\n\n'])
 end
 
 clear lambda lambda_itr x_itr Add iter_max step eps_dd soldd
