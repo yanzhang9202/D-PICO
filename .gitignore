@@ -8,3 +8,7 @@
 ###################
 plots/*
 results/*
+
+# backup files #
+##############
+*_bkup.*
