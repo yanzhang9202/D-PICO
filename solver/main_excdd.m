@@ -66,3 +66,16 @@ for ii = 2 : iter_max
     end
 end
 
+%%
+sol{ind_alg}.x = x;
+sol{ind_alg}.x_itr = x_itr;
+sol{ind_alg}.lambda = lambda;
+sol{ind_alg}.lambda_itr = lambda_itr;
+sol{ind_alg}.lambda_avg = lambda_avg;
+sol{ind_alg}.alpha = alpha;
+sol{ind_alg}.eps = epsl;
+sol{ind_alg}.num_itr = ii;
+
+clear iter_max alpha espl w1 w2 x x_itr lambda lambda_itr lambda_avg ...
+    lambda0 temp intgral Aex rsd
+

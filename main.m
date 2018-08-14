@@ -27,7 +27,6 @@ for ind_alg = ind
         case 4
             main_pic;
         case 5
-%             main_excdd;
             main_excdd;
         otherwise
             error('Undefined algorithm!')
