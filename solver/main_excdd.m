@@ -1,7 +1,7 @@
 %% W.Shi's EXTRA algorithm in the dual domain
 % algorithm parameter setting
 iter_max = 1e3;     % number of max. iter.
-alpha = 1e-2;   % step size for the gradient update
+alpha = 1e-2*N;   % step size for the gradient update
 epsl = 1e-2;
 
 w1 = gph.wgt';
@@ -9,12 +9,9 @@ w2 = w1 - (gph.wgt + eye(N))'/2;
 
 % var. initialization
 x = zeros(n, N, iter_max);
-x_itr = zeros(n, N);
-
 lambda0 = zeros(m,N);
 lambda = zeros(m, N, iter_max);
 lambda_avg = zeros(m, iter_max);
-lambda_itr = zeros(m, N);
 intgral = zeros(m, N);
 
 Aex = datam.A;
@@ -65,6 +62,7 @@ for ii = 2 : iter_max
        end
     end
 end
+x_itr = x(:,:,ii);
 
 %%
 sol{ind_alg}.x = x;
